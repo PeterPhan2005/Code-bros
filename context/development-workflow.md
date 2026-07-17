@@ -62,7 +62,7 @@ Each feature file should contain:
 
 - Do not invent product behavior.
 - Add unresolved decisions to `progress-tracker.md`.
-- Resolve architecture changes in `architecture-context.md` before implementation.
+- Resolve architecture changes in `architecture.md` before implementation.
 - Resolve UI changes in `ui-context.md`.
 - Resolve AI permissions or behavior in `ai-workflow-rules.md`.
 - Record scope cuts explicitly.

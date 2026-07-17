@@ -20,7 +20,7 @@ Phase 1 — Foundation
 
 ## Current Goal
 
-Implement Feature 01 — Design System as the shared UI foundation for Code Bros.
+Implement Feature 02 — Editor Shell as the reusable workspace frame for Code Bros.
 
 ## Product Decisions Completed
 
@@ -281,11 +281,11 @@ Sign in
 
 ## In Progress
 
-Feature 01 — Design System (implementation complete, pending review)
+Feature 02 — Editor Shell (implementation complete, mounted at `/`, architecture re-audited, pending review)
 
 ## Next Up
 
-Feature 02 — Project Shell
+Monaco editor integration
 
 ## Open Questions
 
