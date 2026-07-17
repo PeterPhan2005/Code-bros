@@ -1,3 +1,11 @@
+import { EditorShell } from "@/components/editor/editor-shell";
+
 export default function Home() {
-  return <div className="flex min-h-screen items-center justify-center">Code Bros</div>;
+  return (
+    <EditorShell>
+      <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+        Editor canvas
+      </div>
+    </EditorShell>
+  );
 }

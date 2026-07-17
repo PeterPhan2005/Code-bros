@@ -16,11 +16,11 @@ Solo developer
 
 ## Current Phase
 
-Product definition and architecture planning
+Phase 1 — Foundation
 
 ## Current Goal
 
-Complete foundational context files, convert the MVP into sequenced feature specifications, and build a reliable hackathon demo around collaborative debugging and patch review.
+Implement Feature 02 — Editor Shell as the reusable workspace frame for Code Bros.
 
 ## Product Decisions Completed
 
@@ -281,11 +281,11 @@ Sign in
 
 ## In Progress
 
-Foundational specification files
+Feature 02 — Editor Shell (implementation complete, mounted at `/`, architecture re-audited, pending review)
 
 ## Next Up
 
-Create detailed feature specification files for the Code Bros implementation roadmap.
+Monaco editor integration
 
 ## Open Questions
 

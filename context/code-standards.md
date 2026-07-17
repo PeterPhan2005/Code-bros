@@ -5,7 +5,7 @@
 - Keep modules small and single-purpose.
 - Fix root causes rather than layering workarounds.
 - Do not mix UI, realtime, AI, execution, and persistence concerns.
-- Respect `architecture-context.md`.
+- Respect `architecture.md`.
 - Prefer reliable increments over speculative abstractions.
 - Do not invent behavior missing from the context files.
 
