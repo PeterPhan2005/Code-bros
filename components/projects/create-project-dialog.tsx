@@ -127,16 +127,16 @@ export function CreateProjectDialog({
 
         <div className="rounded-xl border bg-muted/30 px-3 py-2.5">
           <p className="text-xs font-medium text-muted-foreground">
-            Project URL
+            Project slug
           </p>
           <p className="mt-1 truncate font-mono text-sm text-foreground">
-            /editor/{toProjectSlug(name)}
+            {toProjectSlug(name)}
           </p>
           <p
             id="create-project-url-help"
             className="mt-1 text-xs text-muted-foreground"
           >
-            The final URL slug may adjust if this name is already in use.
+            The final slug may adjust if this name is already in use.
           </p>
         </div>
 
