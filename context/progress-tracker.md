@@ -20,7 +20,7 @@ Phase 1 — Foundation
 
 ## Current Goal
 
-Implement Feature 04 — Database Foundation for persistent users, projects, and memberships.
+Review Feature 05 — Projects after completing authenticated, persistence-backed project management.
 
 ## Product Decisions Completed
 
@@ -281,11 +281,11 @@ Sign in
 
 ## In Progress
 
-Feature 04 — Database Foundation (implementation complete, pending review)
+Feature 05 — Projects (implementation complete, pending review)
 
 ## Next Up
 
-Feature 05 — Project APIs and persistence-backed project management
+Feature 06 — File-system persistence and project workspace files
 
 ## Open Questions
 
