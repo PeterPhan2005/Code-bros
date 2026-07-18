@@ -20,7 +20,7 @@ Phase 2 — File Workspace
 
 ## Current Goal
 
-Review Feature 06 — Project File System after completing persistent hierarchical nodes, authorized file operations, starter files, and the workspace explorer.
+Review Feature 07 — Monaco Editor after completing the browser-only Monaco integration, multi-file editing state, conflict-safe persistence, and role-aware workspace behavior.
 
 ## Product Decisions Completed
 
@@ -281,7 +281,7 @@ Sign in
 
 ## In Progress
 
-Feature 06 — Project File System (implementation complete, pending review)
+Feature 07 — Monaco Editor (implementation complete, pending interactive review)
 
 ## Feature 06 Delivered
 
@@ -296,9 +296,27 @@ Feature 06 — Project File System (implementation complete, pending review)
 - Applied `add_project_file_system` migration
 - Passing Prisma validation, TypeScript, lint, production build, and focused database/domain checks
 
+## Feature 07 Delivered
+
+- Browser-only Monaco integration through `@monaco-editor/react` with a recoverable loading boundary
+- Code Bros dark Monaco theme and restrained editor settings
+- Lazy authenticated file-content loading without preloading project contents
+- Stable file-ID-based tabs, per-file Monaco models, URI generation, view state, undo state, and model disposal
+- Multi-file tab activation, horizontal overflow, accessible dirty indicators, and neighboring-tab close behavior
+- Manual save through the toolbar and `Ctrl+S`/`Cmd+S`
+- Saved, saving, dirty, failed, conflict, and read-only status states
+- Atomic expected-revision persistence with explicit conflict review and overwrite confirmation
+- Save ordering that preserves newer edits typed while an earlier save is pending
+- Dirty-tab Save and Close, Close Without Saving, and Cancel flows
+- Rename, move, extension/language, and recursive deletion synchronization for open files
+- Viewer read-only enforcement in Monaco and on the server
+- Browser unload warnings and guarded project switching while files are dirty
+- Passing Prisma validation, TypeScript, lint, production build, and focused editor reducer checks
+- Signed-in browser interaction review remains pending because browser control was unavailable in the implementation session
+
 ## Next Up
 
-Feature 07 — Monaco multi-file editor
+Feature 08 — Realtime collaboration
 
 ## Open Questions
 

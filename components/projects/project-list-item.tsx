@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import type { ProjectListItem as ProjectListItemType } from "@/lib/projects/project.types";
+import { requestEditorNavigation } from "@/lib/editor/unsaved-navigation";
 
 interface ProjectListItemProps {
   project: ProjectListItemType;
@@ -47,7 +48,17 @@ export function ProjectListItem({
           "min-w-0 flex-1 rounded-xl px-3 py-2 outline-none transition-colors",
           "hover:bg-sidebar-accent focus-visible:ring-2 focus-visible:ring-sidebar-ring",
         )}
-        onClick={onProjectSelect}
+        onClick={(event) => {
+          if (
+            !active &&
+            !requestEditorNavigation(`/editor/${project.id}`)
+          ) {
+            event.preventDefault();
+            return;
+          }
+
+          onProjectSelect();
+        }}
       >
         <span className="flex min-w-0 items-center gap-2">
           <span className="truncate text-sm font-medium">

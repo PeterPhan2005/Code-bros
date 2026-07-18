@@ -20,6 +20,20 @@ export interface ProjectFileContent {
   updatedAt: string;
 }
 
+export type FileSaveActionResult =
+  | {
+      success: true;
+      data: {
+        updatedAt: string;
+      };
+    }
+  | {
+      success: false;
+      error: string;
+      code?: "CONFLICT";
+      fieldErrors?: Record<string, string[] | undefined>;
+    };
+
 export interface FileTreeNode extends ProjectNodeListItem {
   children: FileTreeNode[];
 }

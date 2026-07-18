@@ -80,6 +80,10 @@ export const updateFileContentSchema = z
           MAX_TEXT_FILE_SIZE_BYTES,
         "Files must be 1 MB or smaller.",
       ),
+    expectedUpdatedAt: z
+      .string({ error: "A file revision is required." })
+      .datetime({ offset: true, message: "The file revision is invalid." }),
+    forceOverwrite: z.boolean().optional().default(false),
   })
   .strict();
 

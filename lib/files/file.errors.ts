@@ -3,6 +3,7 @@ import "server-only";
 export type FileErrorCode =
   | "NOT_FOUND"
   | "CONFLICT"
+  | "SAVE_CONFLICT"
   | "INVALID_PARENT"
   | "CYCLE"
   | "PROTECTED"

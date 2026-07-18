@@ -613,23 +613,57 @@ export async function updateFileContent(
     );
   }
 
+  const expectedUpdatedAt = new Date(input.expectedUpdatedAt);
+
   return prisma.$transaction(async (transaction) => {
-    const currentNode = await getActiveNode(
-      transaction,
-      project.id,
-      input.fileId,
+    const nextUpdatedAt = new Date(
+      Math.max(Date.now(), expectedUpdatedAt.getTime() + 1),
     );
-
-    if (currentNode.type !== "FILE") {
-      throw new FileDomainError("NOT_FOUND", "This file is unavailable.");
-    }
-
-    const node = await transaction.projectNode.update({
-      where: { id: currentNode.id },
+    const updateResult = await transaction.projectNode.updateMany({
+      where: {
+        id: input.fileId,
+        projectId: project.id,
+        status: "ACTIVE",
+        type: "FILE",
+        ...(input.forceOverwrite
+          ? {}
+          : {
+              updatedAt: expectedUpdatedAt,
+            }),
+      },
       data: {
         content: input.content,
         updatedById: currentUser.id,
+        updatedAt: nextUpdatedAt,
       },
+    });
+
+    if (updateResult.count !== 1) {
+      const currentNode = await transaction.projectNode.findFirst({
+        where: {
+          id: input.fileId,
+          projectId: project.id,
+          status: "ACTIVE",
+          type: "FILE",
+        },
+        select: { id: true },
+      });
+
+      if (!currentNode) {
+        throw new FileDomainError(
+          "NOT_FOUND",
+          "This file is unavailable.",
+        );
+      }
+
+      throw new FileDomainError(
+        "SAVE_CONFLICT",
+        "This file changed on the server. Review both versions before saving.",
+      );
+    }
+
+    const node = await transaction.projectNode.findUniqueOrThrow({
+      where: { id: input.fileId },
       select: nodeListSelect,
     });
 

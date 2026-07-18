@@ -22,6 +22,7 @@ import {
   updateFileContent,
 } from "@/lib/files/file.service";
 import type {
+  FileSaveActionResult,
   ProjectFileContent,
   ProjectNodeListItem,
 } from "@/lib/files/file.types";
@@ -191,7 +192,7 @@ export async function deleteNodeAction(
 
 export async function updateFileContentAction(
   input: unknown,
-): Promise<ActionResult<{ updatedAt: string }>> {
+): Promise<FileSaveActionResult> {
   const parsedInput = updateFileContentSchema.safeParse(input);
 
   if (!parsedInput.success) {
@@ -210,6 +211,17 @@ export async function updateFileContentAction(
       data: { updatedAt: result.node.updatedAt },
     };
   } catch (error) {
+    if (
+      error instanceof FileDomainError &&
+      error.code === "SAVE_CONFLICT"
+    ) {
+      return {
+        success: false,
+        code: "CONFLICT",
+        error: error.message,
+      };
+    }
+
     return {
       success: false,
       error: mutationFailure(

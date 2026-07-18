@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { EditorWorkspace } from "@/components/editor/editor-workspace";
+import { AppEditorWorkspace } from "@/components/editor/app-editor-workspace";
 import { ProjectWorkspace } from "@/components/editor/project-workspace";
 import { getProjectTree } from "@/lib/files/file.queries";
 import type { ProjectNodeListItem } from "@/lib/files/file.types";
@@ -28,12 +28,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <EditorWorkspace currentProjectId={project.id}>
+    <AppEditorWorkspace currentProjectId={project.id}>
       <ProjectWorkspace
         project={project}
         nodes={nodes}
         treeError={treeError}
       />
-    </EditorWorkspace>
+    </AppEditorWorkspace>
   );
 }

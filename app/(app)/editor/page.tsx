@@ -1,10 +1,10 @@
-import { EditorWorkspace } from "@/components/editor/editor-workspace";
+import { AppEditorWorkspace } from "@/components/editor/app-editor-workspace";
 import { ProjectHome } from "@/components/projects/project-home";
 
 export default function EditorPage() {
   return (
-    <EditorWorkspace>
+    <AppEditorWorkspace>
       <ProjectHome />
-    </EditorWorkspace>
+    </AppEditorWorkspace>
   );
 }
