@@ -20,7 +20,7 @@ Phase 1 — Foundation
 
 ## Current Goal
 
-Implement Feature 03 — Authentication as the identity foundation for Code Bros.
+Review Feature 05 — Projects after completing authenticated, persistence-backed project management.
 
 ## Product Decisions Completed
 
@@ -281,11 +281,11 @@ Sign in
 
 ## In Progress
 
-Feature 03 — Authentication (implementation complete, pending review)
+Feature 05 — Projects (implementation complete, pending review)
 
 ## Next Up
 
-Prisma project, room, member, and invitation models
+Feature 06 — File-system persistence and project workspace files
 
 ## Open Questions
 

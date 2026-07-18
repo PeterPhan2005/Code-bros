@@ -1,11 +1,10 @@
-import { EditorShell } from "@/components/editor/editor-shell";
+import { EditorWorkspace } from "@/components/editor/editor-workspace";
+import { ProjectHome } from "@/components/projects/project-home";
 
 export default function EditorPage() {
   return (
-    <EditorShell>
-      <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-        Editor canvas
-      </div>
-    </EditorShell>
+    <EditorWorkspace>
+      <ProjectHome />
+    </EditorWorkspace>
   );
 }
