@@ -27,20 +27,24 @@ BODY="${3:-}"
 METHOD_UPPER=$(echo "$METHOD" | tr '[:lower:]' '[:upper:]')
 SCOPES="${CLERK_BAPI_SCOPES:-}"
 
+has_scope() {
+  [[ ",${SCOPES}," == *",$1,"* ]]
+}
+
 # Scope check
 if [[ "$ADMIN" == false ]]; then
   case "$METHOD_UPPER" in
     GET)
       ;; # always allowed
     POST|PUT|PATCH)
-      if [[ "$SCOPES" != *"write"* ]]; then
+      if ! has_scope write; then
         echo "ERROR: $METHOD_UPPER requests require CLERK_BAPI_SCOPES=\"write\" or --admin flag." >&2
         echo "Current CLERK_BAPI_SCOPES: \"$SCOPES\"" >&2
         exit 1
       fi
       ;;
     DELETE)
-      if [[ "$SCOPES" != *"write"* ]] || [[ "$SCOPES" != *"delete"* ]]; then
+      if ! has_scope write || ! has_scope delete; then
         echo "ERROR: DELETE requests require CLERK_BAPI_SCOPES=\"write,delete\" or --admin flag." >&2
         echo "Current CLERK_BAPI_SCOPES: \"$SCOPES\"" >&2
         exit 1
