@@ -20,7 +20,7 @@ Phase 1 — Foundation
 
 ## Current Goal
 
-Implement Feature 02 — Editor Shell as the reusable workspace frame for Code Bros.
+Implement Feature 03 — Authentication as the identity foundation for Code Bros.
 
 ## Product Decisions Completed
 
@@ -281,11 +281,11 @@ Sign in
 
 ## In Progress
 
-Feature 02 — Editor Shell (implementation complete, mounted at `/`, architecture re-audited, pending review)
+Feature 03 — Authentication (implementation complete, pending review)
 
 ## Next Up
 
-Monaco editor integration
+Prisma project, room, member, and invitation models
 
 ## Open Questions
 
