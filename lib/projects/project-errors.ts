@@ -2,6 +2,7 @@ import "server-only";
 
 export type ProjectErrorCode =
   | "UNAUTHENTICATED"
+  | "FORBIDDEN"
   | "NOT_FOUND"
   | "CONFLICT";
 

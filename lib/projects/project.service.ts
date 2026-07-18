@@ -2,6 +2,7 @@ import "server-only";
 
 import { getOrCreateCurrentUser } from "@/lib/auth/get-or-create-user";
 import { prisma } from "@/lib/db/prisma";
+import { createStarterProjectNodes } from "@/lib/files/starter-files";
 import { requireProjectOwner } from "@/lib/projects/project-access";
 import { ProjectDomainError } from "@/lib/projects/project-errors";
 import type {
@@ -106,6 +107,12 @@ export async function createProject(input: CreateProjectInput) {
             userId: currentUser.id,
             role: "OWNER",
           },
+        });
+
+        await createStarterProjectNodes(transaction, {
+          projectId: project.id,
+          projectName: project.name,
+          creatorId: currentUser.id,
         });
 
         return project;

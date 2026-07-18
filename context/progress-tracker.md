@@ -16,11 +16,11 @@ Solo developer
 
 ## Current Phase
 
-Phase 1 — Foundation
+Phase 2 — File Workspace
 
 ## Current Goal
 
-Review Feature 05 — Projects after completing authenticated, persistence-backed project management.
+Review Feature 06 — Project File System after completing persistent hierarchical nodes, authorized file operations, starter files, and the workspace explorer.
 
 ## Product Decisions Completed
 
@@ -281,11 +281,24 @@ Sign in
 
 ## In Progress
 
-Feature 05 — Projects (implementation complete, pending review)
+Feature 06 — Project File System (implementation complete, pending review)
+
+## Feature 06 Delivered
+
+- Persistent `ProjectNode` file/folder hierarchy with active and deleted lifecycle states
+- Case-insensitive active sibling uniqueness for root and nested nodes
+- Transactional starter files during project creation
+- Authenticated read queries and Owner/Editor write authorization
+- Create, rename, move, recursive soft-delete, and content-update services
+- Cycle, protected-node, parent, collision, and 1 MB content validation
+- Flat-list tree construction, deterministic derived paths, and malformed-tree safety
+- Project file explorer with nested tree, selection, previews, action menus, dialogs, empty states, and loading/error states
+- Applied `add_project_file_system` migration
+- Passing Prisma validation, TypeScript, lint, production build, and focused database/domain checks
 
 ## Next Up
 
-Feature 06 — File-system persistence and project workspace files
+Feature 07 — Monaco multi-file editor
 
 ## Open Questions
 

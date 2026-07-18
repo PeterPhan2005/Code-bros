@@ -91,6 +91,21 @@ export async function requireProjectAccess(projectId: string) {
   return access;
 }
 
+export const requireProjectReadAccess = requireProjectAccess;
+
+export async function requireProjectWriteAccess(projectId: string) {
+  const access = await requireProjectAccess(projectId);
+
+  if (access.role === "VIEWER") {
+    throw new ProjectDomainError(
+      "FORBIDDEN",
+      "You do not have permission to modify this project.",
+    );
+  }
+
+  return access;
+}
+
 export async function requireProjectOwner(projectId: string) {
   const parsedProjectId = projectIdentifierSchema.safeParse(projectId);
 

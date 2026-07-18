@@ -1,0 +1,2 @@
+export const MAX_TEXT_FILE_SIZE_BYTES = 1_048_576;
+export const MAX_PROJECT_NODE_NAME_LENGTH = 120;
