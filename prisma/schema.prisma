@@ -23,6 +23,16 @@ enum ProjectStatus {
   DELETED
 }
 
+enum NodeType {
+  FILE
+  FOLDER
+}
+
+enum NodeStatus {
+  ACTIVE
+  DELETED
+}
+
 model User {
   id          String  @id @default(cuid())
   clerkUserId String  @unique
@@ -30,8 +40,10 @@ model User {
   displayName String?
   imageUrl    String?
 
-  ownedProjects Project[]       @relation("ProjectOwner")
-  memberships   ProjectMember[]
+  ownedProjects       Project[]       @relation("ProjectOwner")
+  memberships         ProjectMember[]
+  createdProjectNodes ProjectNode[]   @relation("ProjectNodeCreator")
+  updatedProjectNodes ProjectNode[]   @relation("ProjectNodeUpdater")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -49,6 +61,7 @@ model Project {
   owner   User   @relation("ProjectOwner", fields: [ownerId], references: [id], onDelete: Cascade)
 
   members ProjectMember[]
+  nodes   ProjectNode[]
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -57,6 +70,43 @@ model Project {
   @@unique([ownerId, slug])
   @@index([ownerId])
   @@index([status])
+  @@index([updatedAt])
+}
+
+model ProjectNode {
+  id        String  @id @default(cuid())
+  projectId String
+  parentId  String?
+
+  name   String
+  type   NodeType
+  status NodeStatus @default(ACTIVE)
+
+  content  String?
+  language String?
+  mimeType String?
+
+  isProtected Boolean @default(false)
+  sortOrder   Int     @default(0)
+
+  createdById String
+  updatedById String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  parent   ProjectNode?  @relation("ProjectNodeChildren", fields: [parentId], references: [id], onDelete: Restrict)
+  children ProjectNode[] @relation("ProjectNodeChildren")
+
+  createdBy User  @relation("ProjectNodeCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  updatedBy User? @relation("ProjectNodeUpdater", fields: [updatedById], references: [id], onDelete: SetNull)
+
+  @@index([projectId, parentId, status])
+  @@index([projectId, type])
+  @@index([parentId])
   @@index([updatedAt])
 }
 
