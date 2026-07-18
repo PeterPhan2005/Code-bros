@@ -1,11 +1,10 @@
-import { EditorShell } from "@/components/editor/editor-shell";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <EditorShell>
-      <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-        Editor canvas
-      </div>
-    </EditorShell>
-  );
+import { EDITOR_ROUTE, SIGN_IN_ROUTE } from "@/lib/auth/routes";
+
+export default async function Home() {
+  const { userId } = await auth();
+
+  redirect(userId ? EDITOR_ROUTE : SIGN_IN_ROUTE);
 }

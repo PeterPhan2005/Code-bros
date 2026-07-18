@@ -1,8 +1,10 @@
 "use client";
 
+import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface EditorNavbarProps {
   isSidebarOpen: boolean;
@@ -37,7 +39,16 @@ export function EditorNavbar({
       </div>
 
       <div className="min-w-0" />
-      <div aria-hidden="true" />
+      <div className="flex h-full items-center justify-center">
+        <ClerkLoading>
+          <Skeleton className="size-8 rounded-full">
+            <span className="sr-only">Loading user menu</span>
+          </Skeleton>
+        </ClerkLoading>
+        <ClerkLoaded>
+          <UserButton />
+        </ClerkLoaded>
+      </div>
     </header>
   );
 }
